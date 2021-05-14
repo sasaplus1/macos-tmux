@@ -1,0 +1,21 @@
+name: test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    name: build
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: make
+      - run: make install
+      - run: cp usr/src/tmux-*/config.log config.log
+      - uses: actions/upload-artifact@v2
+        with:
+          name: config.log
+          path: config.log
+      - run: otool -L ./usr/bin/tmux
+      - run: ./usr/bin/tmux -V
