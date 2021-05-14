@@ -1,0 +1,16 @@
+## sasaplus1/macos-tmux
+
+/usr/bin/**
+!/usr/bin/.gitkeep
+
+/usr/include/**
+!/usr/include/.gitkeep
+
+/usr/lib/**
+!/usr/lib/.gitkeep
+
+/usr/share/**
+!/usr/share/.gitkeep
+
+/usr/src/**
+!/usr/src/.gitkeep
