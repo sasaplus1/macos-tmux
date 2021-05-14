@@ -4,6 +4,14 @@
 
 tmux for macOS, build from source
 
+## How to install
+
+```console
+$ make install
+```
+
+see `Makefile` for more details.
+
 ## License
 
 The MIT license.
