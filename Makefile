@@ -25,6 +25,10 @@ ncurses_configs := $(strip \
   --with-termlib \
 )
 
+utf8proc_version := 2.8.0
+utf8proc_configs := $(strip \
+)
+
 tmux_version := 3.3a
 tmux_configs := $(strip \
 )
@@ -41,6 +45,7 @@ clean: ## remove files
 install: ## install tmux and dependencies
 install: download-libevent install-libevent
 install: download-ncurses install-ncurses
+install: download-utf8proc install-utf8proc
 install: download-tmux install-tmux
 
 .PHONY: download-libevent
@@ -50,6 +55,10 @@ download-libevent: ## [subtarget] download libevent archive
 .PHONY: download-ncurses
 download-ncurses: ## [subtarget] download ncurses archive
 	curl -fsSL -o '$(root)/usr/src/ncurses-$(ncurses_version).tar.gz' https://invisible-mirror.net/archives/ncurses/ncurses-$(ncurses_version).tar.gz
+
+.PHONY: download-utf8proc
+download-utf8proc: ## [subtarget] download utf8proc archive
+	curl -fsSL -o '$(root)/usr/src/utf8proc-$(utf8proc_version).tar.gz' https://github.com/JuliaStrings/utf8proc/archive/refs/tags/v$(utf8proc_version).tar.gz
 
 .PHONY: download-tmux
 download-tmux: ## [subtarget] download tmux archive
@@ -71,6 +80,13 @@ install-ncurses: ## [subtarget] install ncurses
 	cd '$(root)/usr/src/ncurses-$(ncurses_version)' && ./configure --prefix='$(prefix)' $(ncurses_configs)
 	make -C '$(root)/usr/src/ncurses-$(ncurses_version)'
 	make install -C '$(root)/usr/src/ncurses-$(ncurses_version)'
+
+.PHONY: install-utf8proc
+install-utf8proc: ## [subtarget] install utf8proc
+	$(RM) -r '$(root)/usr/src/utf8proc-$(utf8proc_version)'
+	tar fvx '$(root)/usr/src/utf8proc-$(utf8proc_version).tar.gz' -C '$(root)/usr/src'
+	cd '$(root)/usr/src/utf8proc-$(utf8proc_version)' && make prefix='$(prefix)' $(utf8proc_configs)
+	make install -C '$(root)/usr/src/utf8proc-$(utf8proc_version)'
 
 .PHONY: install-tmux
 install-tmux: ## [subtarget] install tmux
