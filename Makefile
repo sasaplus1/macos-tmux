@@ -17,7 +17,7 @@ libevent_configs := $(strip \
   --enable-shared \
 )
 
-ncurses_version := 6.2
+ncurses_version := 6.4
 ncurses_configs := $(strip \
   --enable-pc-files \
   --with-pkg-config-libdir='$(pkg_config_path)' \
@@ -25,7 +25,7 @@ ncurses_configs := $(strip \
   --with-termlib \
 )
 
-tmux_version := 3.2
+tmux_version := 3.3a
 tmux_configs := $(strip \
 )
 
