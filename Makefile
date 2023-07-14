@@ -31,6 +31,7 @@ utf8proc_configs := $(strip \
 
 tmux_version := 3.3a
 tmux_configs := $(strip \
+  --enable-utf8proc \
 )
 
 .PHONY: all
