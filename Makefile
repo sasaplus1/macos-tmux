@@ -7,7 +7,7 @@ makefile_dir := $(dir $(makefile))
 
 root := $(makefile_dir)
 
-prefix := $(abspath $(root)/usr)
+prefix ?= $(abspath $(root)/usr)
 
 nproc := $(shell getconf _NPROCESSORS_ONLN)
 
