@@ -9,6 +9,8 @@ root := $(makefile_dir)
 
 prefix := $(abspath $(root)/usr)
 
+nproc := $(shell getconf _NPROCESSORS_ONLN)
+
 pkg_config_path := $(abspath $(prefix)/lib/pkgconfig)
 
 libevent_version := 2.1.12
@@ -71,7 +73,7 @@ install-libevent: ## [subtarget] install libevent
 	tar fvx '$(root)/usr/src/libevent-$(libevent_version).tar.gz' -C '$(root)/usr/src'
 	mv '$(root)'/usr/src/libevent-$(libevent_version){-stable,}
 	cd '$(root)/usr/src/libevent-$(libevent_version)' && ./configure --prefix='$(prefix)' $(libevent_configs)
-	make -C '$(root)/usr/src/libevent-$(libevent_version)'
+	make -j$(nproc) -C '$(root)/usr/src/libevent-$(libevent_version)'
 	make install -C '$(root)/usr/src/libevent-$(libevent_version)'
 
 .PHONY: install-ncurses
@@ -79,14 +81,14 @@ install-ncurses: ## [subtarget] install ncurses
 	$(RM) -r '$(root)/usr/src/ncurses-$(ncurses_version)'
 	tar fvx '$(root)/usr/src/ncurses-$(ncurses_version).tar.gz' -C '$(root)/usr/src'
 	cd '$(root)/usr/src/ncurses-$(ncurses_version)' && ./configure --prefix='$(prefix)' $(ncurses_configs)
-	make -C '$(root)/usr/src/ncurses-$(ncurses_version)'
+	make -j$(nproc) -C '$(root)/usr/src/ncurses-$(ncurses_version)'
 	make install -C '$(root)/usr/src/ncurses-$(ncurses_version)'
 
 .PHONY: install-utf8proc
 install-utf8proc: ## [subtarget] install utf8proc
 	$(RM) -r '$(root)/usr/src/utf8proc-$(utf8proc_version)'
 	tar fvx '$(root)/usr/src/utf8proc-$(utf8proc_version).tar.gz' -C '$(root)/usr/src'
-	cd '$(root)/usr/src/utf8proc-$(utf8proc_version)' && make prefix='$(prefix)' $(utf8proc_configs)
+	cd '$(root)/usr/src/utf8proc-$(utf8proc_version)' && make prefix='$(prefix)' -j$(nproc) $(utf8proc_configs)
 	make install -C '$(root)/usr/src/utf8proc-$(utf8proc_version)'
 
 .PHONY: install-tmux
@@ -94,5 +96,5 @@ install-tmux: ## [subtarget] install tmux
 	$(RM) -r '$(root)/usr/src/tmux-$(tmux_version)'
 	tar fvx '$(root)/usr/src/tmux-$(tmux_version).tar.gz' -C '$(root)/usr/src/'
 	cd '$(root)/usr/src/tmux-$(tmux_version)' && PKG_CONFIG_PATH='$(pkg_config_path)' ./configure --prefix='$(prefix)' $(tmux_configs) CFLAGS='-I$(prefix)/include' LDFLAGS='-L$(prefix)/lib'
-	make -C '$(root)/usr/src/tmux-$(tmux_version)'
+	make -j$(nproc) -C '$(root)/usr/src/tmux-$(tmux_version)'
 	make install -C '$(root)/usr/src/tmux-$(tmux_version)'
