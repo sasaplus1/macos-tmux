@@ -31,8 +31,9 @@ utf8proc_version := 2.8.0
 utf8proc_configs := $(strip \
 )
 
-tmux_version := 3.3a
+tmux_version := 3.4
 tmux_configs := $(strip \
+  --enable-sixel \
   --enable-utf8proc \
 )
 
@@ -65,7 +66,7 @@ download-utf8proc: ## [subtarget] download utf8proc archive
 
 .PHONY: download-tmux
 download-tmux: ## [subtarget] download tmux archive
-	curl -fsSL -o '$(root)/usr/src/tmux-$(tmux_version).tar.gz' https://github.com/tmux/tmux/releases/download/$(tmux_version)/tmux-$(tmux_version).tar.gz
+	curl -fsSL -o '$(root)/usr/src/tmux-$(tmux_version).tar.gz' https://github.com/tmux/tmux/tarball/master
 
 .PHONY: install-libevent
 install-libevent: ## [subtarget] install libevent
