@@ -96,6 +96,7 @@ install-utf8proc: ## [subtarget] install utf8proc
 install-tmux: ## [subtarget] install tmux
 	$(RM) -r '$(root)/usr/src/tmux-$(tmux_version)'
 	tar fvx '$(root)/usr/src/tmux-$(tmux_version).tar.gz' -C '$(root)/usr/src/'
+	mv $(root)/usr/src/tmux-tmux-bdf8e61 '$(root)/usr/src/tmux-$(tmux_version)'
 	cd '$(root)/usr/src/tmux-$(tmux_version)' && PKG_CONFIG_PATH='$(pkg_config_path)' ./configure --prefix='$(prefix)' $(tmux_configs) CFLAGS='-I$(prefix)/include' LDFLAGS='-L$(prefix)/lib'
 	make -j$(nproc) -C '$(root)/usr/src/tmux-$(tmux_version)'
 	make install -C '$(root)/usr/src/tmux-$(tmux_version)'
