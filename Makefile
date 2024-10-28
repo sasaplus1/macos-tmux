@@ -33,6 +33,7 @@ utf8proc_configs := $(strip \
 
 tmux_version := 3.5
 tmux_configs := $(strip \
+  --enable-sixel \
   --enable-utf8proc \
 )
 
