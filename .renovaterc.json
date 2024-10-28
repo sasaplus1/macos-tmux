@@ -45,7 +45,6 @@
       ],
       "depNameTemplate": "JuliaStrings/utf8proc",
       "datasourceTemplate": "github-releases",
-      "versioningTemplate": "loose",
       "extractVersionTemplate": "^v?(?<version>.*)$"
     },
     {
@@ -58,7 +57,6 @@
       ],
       "depNameTemplate": "tmux/tmux",
       "datasourceTemplate": "github-releases",
-      "versioningTemplate": "loose",
       "extractVersionTemplate": "^tmux\\s*(?<version>.*)$"
     }
   ],
