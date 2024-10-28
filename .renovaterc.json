@@ -1,0 +1,71 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":automergeAll",
+    ":label(renovate)",
+    ":preserveSemverRanges",
+    ":assignee(sasaplus1)",
+    ":timezone(Asia/Tokyo)",
+    "helpers:pinGitHubActionDigestsToSemver"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^Makefile$"
+      ],
+      "matchStrings": [
+        "libevent_version\\s*:?=\\s*(?<currentValue>\\S+)"
+      ],
+      "depNameTemplate": "libevent/libevent",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^release-(?<version>.+)-stable$"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^Makefile$"
+      ],
+      "matchStrings": [
+        "ncurses_version\\s*:?=\\s*(?<currentValue>\\S+)"
+      ],
+      "depNameTemplate": "ncurses",
+      "datasourceTemplate": "custom.ncurses",
+      "versioningTemplate": "loose",
+      "extractVersionTemplate": "^ncurses-(?<version>.+)\\.tar\\.gz$"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^Makefile$"
+      ],
+      "matchStrings": [
+        "utf8proc_version\\s*:?=\\s*(?<currentValue>\\S+)"
+      ],
+      "depNameTemplate": "JuliaStrings/utf8proc",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "loose",
+      "extractVersionTemplate": "^v?(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^Makefile$"
+      ],
+      "matchStrings": [
+        "tmux_version\\s*:?=\\s*(?<currentValue>\\S+)"
+      ],
+      "depNameTemplate": "tmux/tmux",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "loose",
+      "extractVersionTemplate": "^tmux\\s*(?<version>.*)$"
+    }
+  ],
+  "customDatasources": {
+    "ncurses": {
+      "defaultRegistryUrlTemplate": "https://ftp.gnu.org/gnu/ncurses/",
+      "format": "html"
+    }
+  }
+}
