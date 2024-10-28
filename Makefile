@@ -31,7 +31,7 @@ utf8proc_version := 2.9.0
 utf8proc_configs := $(strip \
 )
 
-tmux_version := 3.3a
+tmux_version := 3.5
 tmux_configs := $(strip \
   --enable-utf8proc \
 )
