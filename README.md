@@ -10,6 +10,12 @@ tmux for macOS, build from source
 $ make install
 ```
 
+if you want to change install directory:
+
+```console
+$ make install prefix=/path/to/dir
+```
+
 see `Makefile` for more details.
 
 ## License
