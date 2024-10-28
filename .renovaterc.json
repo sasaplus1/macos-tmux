@@ -56,8 +56,7 @@
         "tmux_version\\s*:?=\\s*(?<currentValue>\\S+)"
       ],
       "depNameTemplate": "tmux/tmux",
-      "datasourceTemplate": "github-releases",
-      "extractVersionTemplate": "^tmux\\s*(?<version>.*)$"
+      "datasourceTemplate": "github-releases"
     }
   ],
   "customDatasources": {
