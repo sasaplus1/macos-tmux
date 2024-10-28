@@ -89,7 +89,7 @@ install-utf8proc: ## [subtarget] install utf8proc
 	$(RM) -r '$(root)/usr/src/utf8proc-$(utf8proc_version)'
 	tar fvx '$(root)/usr/src/utf8proc-$(utf8proc_version).tar.gz' -C '$(root)/usr/src'
 	cd '$(root)/usr/src/utf8proc-$(utf8proc_version)' && make prefix='$(prefix)' -j$(nproc) $(utf8proc_configs)
-	make install -C '$(root)/usr/src/utf8proc-$(utf8proc_version)'
+	make install prefix='$(prefix)' -C '$(root)/usr/src/utf8proc-$(utf8proc_version)'
 
 .PHONY: install-tmux
 install-tmux: ## [subtarget] install tmux
