@@ -12,7 +12,15 @@ jobs:
   build:
     name: build
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-12
+          - os: macos-13
+          # arm64
+          - os: macos-14
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - uses: hendrikmuhs/ccache-action@v1.2
@@ -22,7 +30,7 @@ jobs:
       - run: cp usr/src/tmux-*/config.log config.log
       - uses: actions/upload-artifact@v3
         with:
-          name: config.log
-          path: config.log
+          name: config-${{ matrix.os }}.log
+          path: config-${{ matrix.os }}.log
       - run: otool -L ./usr/bin/tmux
       - run: ./usr/bin/tmux -V
