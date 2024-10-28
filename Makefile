@@ -19,7 +19,7 @@ libevent_configs := $(strip \
   --enable-shared \
 )
 
-ncurses_version := 6.4
+ncurses_version := 6.5
 ncurses_configs := $(strip \
   --enable-pc-files \
   --with-pkg-config-libdir='$(pkg_config_path)' \
