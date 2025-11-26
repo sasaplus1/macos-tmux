@@ -31,7 +31,7 @@ utf8proc_version := 2.11.2
 utf8proc_configs := $(strip \
 )
 
-tmux_version := 3.5
+tmux_version := 3.6
 tmux_configs := $(strip \
   --enable-sixel \
   --enable-utf8proc \
