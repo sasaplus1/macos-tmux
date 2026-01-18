@@ -27,7 +27,7 @@ ncurses_configs := $(strip \
   --with-termlib \
 )
 
-utf8proc_version := 2.11.2
+utf8proc_version := 2.11.3
 utf8proc_configs := $(strip \
 )
 
