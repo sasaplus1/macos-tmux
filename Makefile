@@ -13,7 +13,7 @@ nproc := $(shell getconf _NPROCESSORS_ONLN)
 
 pkg_config_path := $(abspath $(prefix)/lib/pkgconfig)
 
-libevent_version := 2.1.12
+libevent_version := 2.1.13
 libevent_configs := $(strip \
   --disable-openssl \
   --enable-shared \
