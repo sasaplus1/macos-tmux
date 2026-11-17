@@ -12,13 +12,7 @@ jobs:
   build:
     name: build
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: macos-14
-          - os: macos-15
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: hendrikmuhs/ccache-action@5ebbd400eff9e74630f759d94ddd7b6c26299639 # v1.2
